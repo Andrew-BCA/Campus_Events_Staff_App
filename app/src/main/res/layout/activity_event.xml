@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventActivity">
+
+    <EditText
+
+        android:id="@+id/eventName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Event Name"
+        android:layout_margin="16dp" />
+
+    <EditText
+
+        android:id="@+id/deptName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eventName"
+        android:hint="Enter Dept Name"
+        android:layout_margin="16dp" />
+
+    <EditText
+
+        android:id="@+id/eventDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deptName"
+        android:hint="Enter Event Date"
+        android:layout_margin="16dp" />
+
+    <EditText
+
+        android:id="@+id/regDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter last date for registration"
+        android:layout_below="@id/eventDate"
+        android:layout_margin="16dp" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/regDate"
+        android:layout_marginStart="16dp"
+        android:text="Add Event" />
+
+
+    <Button
+        android:id="@+id/vieweventButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/addButton"
+        android:layout_marginStart="16dp"
+        android:text="View Added Event" />
+
+    <Button
+        android:id="@+id/viewregButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/vieweventButton"
+        android:layout_marginStart="16dp"
+        android:text="View Participants" />
+
+</RelativeLayout>

@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.CampusEventsStaff" parent="Base.Theme.CampusEventsStaff" />
+    <style name="Theme.CampusEventsStaff.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.CampusEventsStaff.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.CampusEventsStaff.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

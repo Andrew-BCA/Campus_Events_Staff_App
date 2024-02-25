@@ -47,19 +47,19 @@ public class EventViewActivity extends AppCompatActivity {
 
                     // Create TextViews dynamically for each event
                     TextView titleTextView = new TextView(EventViewActivity.this);
-                    titleTextView.setText(data.getEvent());
+                    titleTextView.setText("Event Name: "+data.getEvent());
 
                     TextView departTextView = new TextView(EventViewActivity.this);
-                    departTextView.setText(data.getDept());
+                    departTextView.setText("Organizing Dept.: "+data.getDept());
 
                     TextView linkTextView = new TextView(EventViewActivity.this);
-                    linkTextView.setText(data.getRegDate());
+                    linkTextView.setText("Registration Date: "+data.getRegDate());
 
                     TextView dateTextView = new TextView(EventViewActivity.this);
-                    dateTextView.setText(data.getDate());
+                    dateTextView.setText("Event Date: " + data.getDate());
 
 
-                    // Create a delete button for each event
+                   /* // Create a delete button for each event
                     Button deleteButton = new Button(EventViewActivity.this);
                     deleteButton.setText("Delete");
                     deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +68,14 @@ public class EventViewActivity extends AppCompatActivity {
                             // Implement code to delete the event from the database
                             databaseReference.child(snapshot.getKey()).removeValue();
                         }
+                    });*/
+                    eventLayout.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View view) {
+                            // Implement code to delete the event from the database
+                            databaseReference.child(snapshot.getKey()).removeValue();
+                            return true;
+                        }
                     });
 
                     // Add TextViews and delete button to the eventLayout
@@ -75,7 +83,7 @@ public class EventViewActivity extends AppCompatActivity {
                     eventLayout.addView(departTextView);
                     eventLayout.addView(dateTextView);
                     eventLayout.addView(linkTextView);
-                    eventLayout.addView(deleteButton);
+                    //eventLayout.addView(deleteButton);
 
                     // Add eventLayout to the main LinearLayout
                     linearLayout.addView(eventLayout);

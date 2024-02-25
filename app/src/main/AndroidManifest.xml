@@ -13,6 +13,14 @@
         android:theme="@style/Theme.CampusEventsStaff"
         tools:targetApi="31">
         <activity
+            android:name=".Dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".sidebar"
+            android:exported="false"
+            android:label="@string/title_activity_sidebar"
+            android:theme="@style/Theme.CampusEventsStaff.NoActionBar" />
+        <activity
             android:name=".ViewParticipantsActivity"
             android:exported="false" />
         <activity

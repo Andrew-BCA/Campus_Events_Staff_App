@@ -5,68 +5,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg3"
     tools:context=".EventActivity">
 
     <EditText
 
         android:id="@+id/eventName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/fields"
+        android:gravity="center"
         android:hint="Enter Event Name"
-        android:layout_margin="16dp" />
+        android:textColorHint="@color/white"
+        android:textSize="20dp" />
 
     <EditText
 
         android:id="@+id/deptName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/eventName"
         android:hint="Enter Dept Name"
-        android:layout_margin="16dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/fields"
+        android:textSize="20dp"
+        android:textColorHint="@color/white"
+        android:gravity="center"/>
 
     <EditText
 
         android:id="@+id/eventDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_below="@id/deptName"
         android:hint="Enter Event Date"
-        android:layout_margin="16dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/fields"
+        android:textSize="20dp"
+        android:textColorHint="@color/white"
+        android:gravity="center"/>
 
     <EditText
 
         android:id="@+id/regDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter last date for registration"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_below="@id/eventDate"
-        android:layout_margin="16dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/fields"
+        android:gravity="center"
+        android:hint="Enter last date for registration"
+        android:textColorHint="@color/white"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/addinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/regDate"
+        android:hint="Additional Info"
+        android:textColorHint="@color/white"
+        android:textSize="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="@drawable/additional_info"/>
+    <Button
+        android:id="@+id/uploadBrochureButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/addinfo"
+        android:text="Upload Broucher"
+        android:textSize="15dp"
+        android:background="@drawable/btn"/>
 
     <Button
         android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/regDate"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/uploadBrochureButton"
         android:layout_marginStart="16dp"
-        android:text="Add Event" />
+        android:layout_marginTop="20dp"
+        android:text="Add Event"
+        android:textSize="25dp"
+        android:background="@drawable/btn"/>
 
-
-    <Button
-        android:id="@+id/vieweventButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_below="@id/addButton"
-        android:layout_marginStart="16dp"
-        android:text="View Added Event" />
-
-    <Button
-        android:id="@+id/viewregButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_below="@id/vieweventButton"
-        android:layout_marginStart="16dp"
-        android:text="View Participants" />
 
 </RelativeLayout>

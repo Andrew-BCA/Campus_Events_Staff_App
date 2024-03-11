@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 @SuppressLint("MissingInflatedId")
 public class EventViewActivity extends AppCompatActivity {
@@ -59,22 +61,15 @@ public class EventViewActivity extends AppCompatActivity {
                     dateTextView.setText("Event Date: " + data.getDate());
 
 
-                   /* // Create a delete button for each event
+                    // Create a delete button for each event
                     Button deleteButton = new Button(EventViewActivity.this);
                     deleteButton.setText("Delete");
                     deleteButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             // Implement code to delete the event from the database
-                            databaseReference.child(snapshot.getKey()).removeValue();
-                        }
-                    });*/
-                    eventLayout.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public boolean onLongClick(View view) {
-                            // Implement code to delete the event from the database
-                            databaseReference.child(snapshot.getKey()).removeValue();
-                            return true;
+                            String eventId = snapshot.getKey();
+                            deleteEvent(eventId);
                         }
                     });
 
@@ -83,7 +78,7 @@ public class EventViewActivity extends AppCompatActivity {
                     eventLayout.addView(departTextView);
                     eventLayout.addView(dateTextView);
                     eventLayout.addView(linkTextView);
-                    //eventLayout.addView(deleteButton);
+                    eventLayout.addView(deleteButton);
 
                     // Add eventLayout to the main LinearLayout
                     linearLayout.addView(eventLayout);
@@ -94,6 +89,47 @@ public class EventViewActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 // Handle errors, add your code here
             }
+        });
+    }
+
+    private void deleteEvent(String eventId) {
+        // Delete event from "events" node
+        DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("events");
+        eventsRef.child(eventId).removeValue();
+
+        // Delete event's participants from "participants" node for each department
+        DatabaseReference participantsRef = FirebaseDatabase.getInstance().getReference("participants");
+        participantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot deptSnapshot : dataSnapshot.getChildren()) {
+                    String deptKey = deptSnapshot.getKey();
+                    DatabaseReference eventParticipantsRef = deptSnapshot.child(eventId).getRef();
+                    eventParticipantsRef.removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors
+            }
+        });
+
+        // Delete event's brochure from storage
+        deleteBrochure(eventId);
+    }
+
+
+    private void deleteBrochure(String eventId) {
+        // Construct the brochure reference based on eventId
+        StorageReference brochureRef = FirebaseStorage.getInstance().getReference().child("brochures/" + eventId + "_brochure.pdf");
+
+        // Delete the brochure
+        brochureRef.delete().addOnSuccessListener(aVoid -> {
+            // Brochure deleted successfully
+            // You can add any additional handling here if needed
+        }).addOnFailureListener(exception -> {
+            // Handle any errors
         });
     }
 }

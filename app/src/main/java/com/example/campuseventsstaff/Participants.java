@@ -1,37 +1,30 @@
 package com.example.campuseventsstaff;
 
 
-// Participant.java
 public class Participants {
+
+
     private String name;
-    private String email;
     private String dept;
     private String eventName;
-    private String eventDept;
     private String mobile;
+    private String eventDept;
+    private  String roll;
 
-    // Default constructor required for Firebase
+
     public Participants() {
+        // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-
-    public Participants(String name, String email, String dept, String eventName, String eventDept, String mobile) {
+    public Participants(String name, String dept, String eventName,String mobile,String eventDept,String roll,String Mobile) {
         this.name = name;
-        this.email = email;
         this.dept = dept;
         this.eventName = eventName;
         this.eventDept = eventDept;
         this.mobile = mobile;
+        this.roll = roll;
     }
 
-    // Add getters for each field
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
+    public String getName() { return name; }
 
     public String getDept() {
         return dept;
@@ -45,9 +38,9 @@ public class Participants {
         return eventDept;
     }
 
-    public String getMobile() {
-        return mobile;
-    }
+    public String getMobile(){ return mobile; }
 
+    public  String getRoll(){ return roll; }
 }
+
 

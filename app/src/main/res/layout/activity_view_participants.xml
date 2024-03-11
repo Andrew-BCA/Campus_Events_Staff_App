@@ -2,33 +2,41 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg3">
 
     <EditText
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Organizing Dept Name"
         android:padding="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/fields"
+        android:hint="Organizing Dept Name"
+        android:gravity="center"
+        android:textColorHint="@color/white"/>
 
     <EditText
         android:id="@+id/searchEventText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Event Name"
         android:padding="8dp"
         android:layout_below="@+id/searchEditText"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/fields"
+        android:hint="Event Name"
+        android:gravity="center"
+        android:textColorHint="@color/white"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:background="@drawable/eventview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/searchEventText"

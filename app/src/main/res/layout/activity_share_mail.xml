@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg3"
+    tools:context=".Share_Mail">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        >
+    <EditText
+        android:id="@+id/tomail"
+        android:layout_width="400dp"
+        android:textColorHint="@color/white"
+        android:textAlignment="center"
+        android:layout_height="50dp"
+        android:hint="To Mail"
+        android:background="@drawable/fields"/>
+
+    <EditText
+        android:id="@+id/subject"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:textColorHint="@color/white"
+        android:layout_below="@+id/tomail"
+        android:hint="Subject"
+        android:background="@drawable/fields"
+        />
+
+    <EditText
+        android:id="@+id/content"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:textColorHint="@color/white"
+        android:hint="Content"
+        android:background="@drawable/additional_info"
+        android:inputType="textMultiLine"
+        android:layout_below="@+id/subject"/>
+
+        <Button
+            android:id="@+id/attachButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn"
+            android:text="Upload File"/>
+
+        <Button
+            android:id="@+id/sendmail"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/attachButton"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn"
+            android:text="send"
+            />
+
+</RelativeLayout>
+</RelativeLayout>

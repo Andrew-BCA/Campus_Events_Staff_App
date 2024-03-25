@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class Dashboard extends AppCompatActivity {
 
     TextView welcome;
-    ImageView add,viewevents,viewpart,share;
+    ImageView add,viewevents,viewpart,share,studentdetails,sharemail;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,8 @@ public class Dashboard extends AppCompatActivity {
         viewevents = findViewById(R.id.view_event);
         share = findViewById(R.id.share_messages);
         viewpart = findViewById(R.id.view_participants);
+        studentdetails = findViewById(R.id.viewStudentsdetails);
+        sharemail = findViewById(R.id.sharemail);
 
         // Retrieve the roll number from SharedPreferences
         String username = getSharedPreferences("user_info", MODE_PRIVATE)
@@ -59,6 +61,22 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Dashboard.this,EventViewActivity.class);
+                startActivity(i);
+            }
+        });
+
+        studentdetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Dashboard.this, ViewStudentsDetails.class);
+                startActivity(i);
+            }
+        });
+
+        sharemail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Dashboard.this, Share_Mail.class);
                 startActivity(i);
             }
         });

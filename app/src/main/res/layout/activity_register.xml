@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="40dp"
+    android:paddingLeft="80dp"
+    android:paddingTop="100dp"
     android:background="@drawable/bg3"
     tools:context=".RegisterActivity">
 
@@ -12,7 +13,7 @@
         android:id="@+id/avatar"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="50dp"
         android:background="@drawable/avatar"/>
 
     <EditText

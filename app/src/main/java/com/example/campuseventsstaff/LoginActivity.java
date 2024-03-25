@@ -52,9 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String username = usernameEditText.getText().toString().trim();
+                final String username = usernameEditText.getText().toString().trim().toUpperCase();
                 final String password = passwordEditText.getText().toString();
-                final String dept = deptEditText.getText().toString().trim();
+                final String dept = deptEditText.getText().toString().trim().toUpperCase();
 
                 databaseReference.child(dept).child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -70,10 +70,15 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
                                 // Save the username to SharedPreferences if needed
-                                // getSharedPreferences("user_info", MODE_PRIVATE)
-                                //         .edit()
-                                //         .putString("uname", username)
-                                //         .apply();
+                                 getSharedPreferences("user_info", MODE_PRIVATE)
+                                         .edit()
+                                         .putString("uname", username)
+                                       .apply();
+
+                                getSharedPreferences("user_info", MODE_PRIVATE)
+                                        .edit()
+                                        .putString("dept", dept)
+                                        .apply();
 
                                 Intent i = new Intent(LoginActivity.this, Dashboard.class);
                                 startActivity(i);

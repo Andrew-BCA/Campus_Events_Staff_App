@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/bg3"
+    >
+
+    <TextView
+        android:id="@+id/userDetailsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Details:"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/buttonRetrieve"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        />
+
+    <EditText
+        android:id="@+id/editTextRollNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Roll Number"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextDept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Department"
+        android:inputType="text"
+        android:layout_below="@+id/editTextRollNo"/>
+
+    <Button
+        android:id="@+id/buttonRetrieve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retrieve User Details"
+        android:background="@drawable/btn"
+        android:textColor="@color/white"
+        android:layout_below="@+id/editTextDept"/>
+
+</RelativeLayout>

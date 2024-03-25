@@ -61,7 +61,7 @@ public class ParticipantsAdapter extends RecyclerView.Adapter<ParticipantsAdapte
             deptTextView.setText("Department: " + participant.getDept());
             eventDeptTextView.setText("Event Department: " + participant.getEventDept());
             eventNameTextView.setText("Event Name: " + participant.getEventName());
-            eventNameTextView.setText("Mobile: " + participant.getMobile());
+            mobileTextView.setText("Mobile: " + participant.getMobile());
         }
     }
 }

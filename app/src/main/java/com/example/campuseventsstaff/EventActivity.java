@@ -43,9 +43,15 @@ public class EventActivity extends AppCompatActivity {
         addButton = findViewById(R.id.addButton);
         uploadBrochureButton = findViewById(R.id.uploadBrochureButton);
 
+        String username = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("uname", "default_value_if_not_found");
+
+        String deptartment = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("dept", "default_value_if_not_found");
+
         // Initialize Firebase
         database = FirebaseDatabase.getInstance();
-        tasksRef = database.getReference("events");
+        tasksRef = database.getReference("events").child(deptartment).child(username);
         storage = FirebaseStorage.getInstance();
         brochureRef = storage.getReference().child("brochures");
 
@@ -66,6 +72,10 @@ public class EventActivity extends AppCompatActivity {
                     // Push the new task to Firebase
                     tasksRef.child(newevent).setValue(E);
                     event.setText("");
+                    dept.setText("");
+                    date.setText("");
+                    regdate.setText("");
+                    addinfo.setText("");
 
                     Toast.makeText(EventActivity.this, "Event Added", Toast.LENGTH_SHORT).show();
                 }

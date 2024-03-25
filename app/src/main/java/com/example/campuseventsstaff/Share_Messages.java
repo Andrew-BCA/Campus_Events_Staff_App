@@ -42,14 +42,16 @@ public class Share_Messages extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         tasksRef = database.getReference("messages");
 
-        // Retrieve the roll number from SharedPreferences
-        String username = getSharedPreferences("user_info", MODE_PRIVATE)
-                .getString("username", "default_value_if_not_found");
+
 
 
         sharemessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Retrieve the username from SharedPreferences
+                String username = getSharedPreferences("user_info", MODE_PRIVATE)
+                        .getString("uname", "default_value_if_not_found");
+
                 String sub = subject.getText().toString().trim();
                 String mess = message.getText().toString().trim();
 

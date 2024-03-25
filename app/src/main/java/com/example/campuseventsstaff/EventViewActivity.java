@@ -28,7 +28,13 @@ public class EventViewActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events");
+        String username = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("uname", "default_value_if_not_found");
+
+        String deptartment = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("dept", "default_value_if_not_found");
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(deptartment).child(username);
 
         // Reference to LinearLayout to dynamically add TextViews
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
@@ -94,7 +100,13 @@ public class EventViewActivity extends AppCompatActivity {
 
     private void deleteEvent(String eventId) {
         // Delete event from "events" node
-        DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("events");
+        String username = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("uname", "default_value_if_not_found");
+
+        String deptartment = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("dept", "default_value_if_not_found");
+
+        DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("events").child(deptartment).child(username);
         eventsRef.child(eventId).removeValue();
 
         // Delete event's participants from "participants" node for each department

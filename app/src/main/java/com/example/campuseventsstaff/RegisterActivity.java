@@ -3,20 +3,29 @@ package com.example.campuseventsstaff;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -51,10 +60,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser() {
-        String username = usernameEditText.getText().toString().trim();
+        String username = usernameEditText.getText().toString().trim().toUpperCase();
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
-        String Dept = DeptEditText.getText().toString().trim();
+        String Dept = DeptEditText.getText().toString().trim().toUpperCase();
 
         // Check if fields are not empty
         if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty() && !Dept.isEmpty()) {
@@ -72,7 +81,9 @@ public class RegisterActivity extends AppCompatActivity {
 
             // You can add additional logic here, like showing a success message
             Toast.makeText(this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
-
+            sendEmail();
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
             Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
             startActivity(i);
 
@@ -98,6 +109,64 @@ public class RegisterActivity extends AppCompatActivity {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    private void sendEmail() {
+        final String email = emailEditText.getText().toString().trim();
+        final String recipientEmail = email;
+        final String Rollno = usernameEditText.getText().toString().trim();
+
+        // Replace with your Gmail
+        final String senderEmail = "andrewpatrick011@gmail.com";
+        final String senderPassword = "pvdf cmzm akqm bmrh";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(senderEmail, senderPassword);
+            }
+        });
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(senderEmail));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject("Registration Successfull");
+            message.setText("Dear,"+Rollno +"\n Your Registration process for RegistriX is successfully completed....");
+
+            // Perform email sending in a background thread
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Transport.send(message);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Toast.makeText(getApplicationContext(), "Email sent successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "Failed to send email", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                }
+            }).start();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Failed to send email", Toast.LENGTH_SHORT).show();
         }
     }
 }

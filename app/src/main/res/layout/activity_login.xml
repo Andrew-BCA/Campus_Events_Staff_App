@@ -14,7 +14,7 @@
         android:id="@+id/avatar"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="50dp"
         android:background="@drawable/avatar"/>
 
     <EditText

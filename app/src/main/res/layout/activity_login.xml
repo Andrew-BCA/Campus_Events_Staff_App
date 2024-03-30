@@ -3,33 +3,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingTop="16dp"
+    android:paddingLeft="80dp"
+    android:paddingTop="100dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
+    android:background="@drawable/bg3"
     tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/avatar"/>
 
     <EditText
         android:id="@+id/editTextUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Username"/>
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/avatar"
+        android:layout_marginTop="20dp"
+        android:hint="Username"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="@drawable/fields"/>
+
+    <EditText
+        android:id="@+id/editTextDept"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/editTextUsername"
+        android:layout_marginTop="20dp"
+        android:hint="Dept"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="@drawable/fields"/>
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextUsername"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/editTextDept"
         android:layout_marginTop="16dp"
         android:inputType="textPassword"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="@drawable/fields"/>
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_below="@id/editTextPassword"
-        android:layout_marginTop="16dp"
-        android:text="Login"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn"
+        android:text="Login" />
+
+    <TextView
+        android:id="@+id/dont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/buttonLogin"
+        android:layout_marginTop="20dp"
+        android:text="Don't Have an Account??"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/buttonRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dont"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"
+        android:text="Register Here..."
+        android:textColor="#0000FF"/>
+
 
 </RelativeLayout>

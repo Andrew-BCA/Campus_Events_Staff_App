@@ -36,7 +36,11 @@ public class ViewParticipantsActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("participants");
+        // Retrieve the username from SharedPreferences
+        String username = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("uname", "default_value_if_not_found");
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("participants").child(username);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

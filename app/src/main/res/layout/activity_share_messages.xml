@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg3"
+    tools:context=".Share_Messages">
+
+    <EditText
+        android:id="@+id/sub"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/fields"
+        android:gravity="center"
+        android:hint="Subject"
+        android:textColorHint="@color/white"
+        android:textSize="35dp" />
+
+    <EditText
+        android:id="@+id/message"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/sub"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/additional_info"
+        android:gravity="center"
+        android:inputType="textMultiLine"
+        android:hint="Content"
+        android:textColorHint="@color/white"
+        android:textSize="35dp" />
+
+    <Button
+        android:id="@+id/upload_file"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/message"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:text="Upload file"
+        android:background="@drawable/btn"/>
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="Share Message"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="40dp"
+        android:layout_below="@+id/upload_file"
+        android:background="@drawable/btn"
+        />
+</RelativeLayout>

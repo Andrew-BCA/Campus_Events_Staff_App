@@ -57,7 +57,7 @@ public class ParticipantsAdapter extends RecyclerView.Adapter<ParticipantsAdapte
 
         public void bind(Participants participant) {
             nameTextView.setText("Name: " + participant.getName());
-            emailTextView.setText("Roll_No: " + participant.getEmail());
+            emailTextView.setText("Roll_No: " + participant.getRoll());
             deptTextView.setText("Department: " + participant.getDept());
             eventDeptTextView.setText("Event Department: " + participant.getEventDept());
             eventNameTextView.setText("Event Name: " + participant.getEventName());

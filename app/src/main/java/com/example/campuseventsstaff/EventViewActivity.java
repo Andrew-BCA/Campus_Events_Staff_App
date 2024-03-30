@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 @SuppressLint("MissingInflatedId")
 public class EventViewActivity extends AppCompatActivity {
@@ -26,7 +28,13 @@ public class EventViewActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events");
+        String username = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("uname", "default_value_if_not_found");
+
+        String deptartment = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("dept", "default_value_if_not_found");
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(deptartment).child(username);
 
         // Reference to LinearLayout to dynamically add TextViews
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
@@ -47,16 +55,16 @@ public class EventViewActivity extends AppCompatActivity {
 
                     // Create TextViews dynamically for each event
                     TextView titleTextView = new TextView(EventViewActivity.this);
-                    titleTextView.setText(data.getEvent());
+                    titleTextView.setText("Event Name: "+data.getEvent());
 
                     TextView departTextView = new TextView(EventViewActivity.this);
-                    departTextView.setText(data.getDept());
+                    departTextView.setText("Organizing Dept.: "+data.getDept());
 
                     TextView linkTextView = new TextView(EventViewActivity.this);
-                    linkTextView.setText(data.getRegDate());
+                    linkTextView.setText("Registration Date: "+data.getRegDate());
 
                     TextView dateTextView = new TextView(EventViewActivity.this);
-                    dateTextView.setText(data.getDate());
+                    dateTextView.setText("Event Date: " + data.getDate());
 
 
                     // Create a delete button for each event
@@ -66,7 +74,8 @@ public class EventViewActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             // Implement code to delete the event from the database
-                            databaseReference.child(snapshot.getKey()).removeValue();
+                            String eventId = snapshot.getKey();
+                            deleteEvent(eventId);
                         }
                     });
 
@@ -86,6 +95,53 @@ public class EventViewActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 // Handle errors, add your code here
             }
+        });
+    }
+
+    private void deleteEvent(String eventId) {
+        // Delete event from "events" node
+        String username = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("uname", "default_value_if_not_found");
+
+        String deptartment = getSharedPreferences("user_info", MODE_PRIVATE)
+                .getString("dept", "default_value_if_not_found");
+
+        DatabaseReference eventsRef = FirebaseDatabase.getInstance().getReference("events").child(deptartment).child(username);
+        eventsRef.child(eventId).removeValue();
+
+        // Delete event's participants from "participants" node for each department
+        DatabaseReference participantsRef = FirebaseDatabase.getInstance().getReference("participants");
+        participantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot deptSnapshot : dataSnapshot.getChildren()) {
+                    String deptKey = deptSnapshot.getKey();
+                    DatabaseReference eventParticipantsRef = deptSnapshot.child(eventId).getRef();
+                    eventParticipantsRef.removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle errors
+            }
+        });
+
+        // Delete event's brochure from storage
+        deleteBrochure(eventId);
+    }
+
+
+    private void deleteBrochure(String eventId) {
+        // Construct the brochure reference based on eventId
+        StorageReference brochureRef = FirebaseStorage.getInstance().getReference().child("brochures/" + eventId + "_brochure.pdf");
+
+        // Delete the brochure
+        brochureRef.delete().addOnSuccessListener(aVoid -> {
+            // Brochure deleted successfully
+            // You can add any additional handling here if needed
+        }).addOnFailureListener(exception -> {
+            // Handle any errors
         });
     }
 }

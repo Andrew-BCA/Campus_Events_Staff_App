@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg3"
+    tools:context=".Dashboard">
+
+    <TextView
+        android:id="@+id/welcome"
+        android:gravity="center"
+        android:layout_width="275dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="75dp"
+        android:textColor="@color/white"
+        android:background="@drawable/welcome"
+        />
+
+    <ImageView
+        android:id="@+id/add_event"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="175dp"
+        android:src="@drawable/addevents" />
+
+    <ImageView
+        android:id="@+id/view_event"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="400dp"
+        android:src="@drawable/viewevents" />
+
+    <ImageView
+        android:id="@+id/share_messages"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="175dp"
+        android:src="@drawable/sharemessages" />
+
+    <ImageView
+        android:id="@+id/view_participants"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="400dp"
+        android:src="@drawable/viewparticipants" />
+
+    <ImageView
+        android:id="@+id/viewStudentsdetails"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="600dp"
+        android:src="@drawable/stddetails" />
+
+    <ImageView
+        android:id="@+id/sharemail"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="600dp"
+        android:src="@drawable/sharemail" />
+
+
+</RelativeLayout>

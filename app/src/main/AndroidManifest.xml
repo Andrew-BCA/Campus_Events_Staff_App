@@ -26,9 +26,6 @@
             android:name=".Share_Event_Result"
             android:exported="false" />
         <activity
-            android:name=".Share_Mail"
-            android:exported="false" />
-        <activity
             android:name=".ViewStudentsDetails"
             android:exported="false" />
         <activity
@@ -61,6 +58,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Share_Mail"
+            android:exported="true">
+
+        </activity>
+
     </application>
 
 </manifest>

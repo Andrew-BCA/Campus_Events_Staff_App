@@ -13,8 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.io.IOException;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -133,37 +131,22 @@ public class Share_Mail extends AppCompatActivity {
             message.setText(con);
 
             if (attachmentUri != null) {
-                try {
-                    // Get the real path of the attachment URI
-                    String realPath = getRealPathFromUri(attachmentUri);
+                // Add the if condition here
+                DataSource source = new FileDataSource(getRealPathFromUri(attachmentUri));
+                MimeBodyPart attachmentPart = new MimeBodyPart();
+                attachmentPart.setDataHandler(new DataHandler(source));
+                attachmentPart.setFileName(getFileName(attachmentUri));
 
-                    // Create a DataSource for the attachment
-                    DataSource source = new FileDataSource(realPath);
+                MimeMultipart multipart = new MimeMultipart();
+                multipart.addBodyPart(attachmentPart);
 
-                    // Create a MimeBodyPart for the attachment
-                    MimeBodyPart attachmentPart = new MimeBodyPart();
-                    attachmentPart.setDataHandler(new DataHandler(source));
-                    attachmentPart.setFileName(getFileName(attachmentUri));
+                MimeBodyPart textPart = new MimeBodyPart();
+                textPart.setText(con);
 
-                    // Create a MimeMultipart to hold both the attachment and the text part
-                    MimeMultipart multipart = new MimeMultipart();
-                    multipart.addBodyPart(attachmentPart);
+                multipart.addBodyPart(textPart);
 
-                    // Set the text content of the message
-                    MimeBodyPart textPart = new MimeBodyPart();
-                    textPart.setText(con);
-                    multipart.addBodyPart(textPart);
-
-                    // Set the multipart content as the message content
-                    message.setContent(multipart);
-
-                }  catch (MessagingException e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "MessagingException: Failed to attach file", Toast.LENGTH_SHORT).show();
+                message.setContent(multipart);
             }
-
-            }
-
 
             Transport.send(message);
             Toast.makeText(getApplicationContext(), "Email sent successfully", Toast.LENGTH_SHORT).show();
@@ -178,19 +161,14 @@ public class Share_Mail extends AppCompatActivity {
 
 
     private String getRealPathFromUri(Uri uri) {
-        String[] projection = {MediaStore.MediaColumns.DATA};
-        Cursor cursor = null;
-        try {
-            cursor = getContentResolver().query(uri, projection, null, null, null);
+        String[] projection = {MediaStore.Images.Media.DATA};
+        try (Cursor cursor = getContentResolver().query(uri, projection, null, null, null)) {
             if (cursor != null && cursor.moveToFirst()) {
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 return cursor.getString(column_index);
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
             }
         }
         return uri.getPath();
     }
+
 }

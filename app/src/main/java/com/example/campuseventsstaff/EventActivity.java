@@ -61,10 +61,10 @@ public class EventActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newevent = event.getText().toString().trim();
-                String newdept = dept.getText().toString().trim();
-                String newdate = date.getText().toString().trim();
-                String newreg = regdate.getText().toString().trim();
+                String newevent = event.getText().toString().trim().toUpperCase();
+                String newdept = dept.getText().toString().trim().toUpperCase();
+                String newdate = date.getText().toString().trim().toUpperCase();
+                String newreg = regdate.getText().toString().trim().toUpperCase();
                 String addinfos = addinfo.getText().toString().trim();
 
                 Events E = new Events(newevent, newdept, newdate, newreg,addinfos);
